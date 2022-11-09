@@ -11,6 +11,13 @@ function getRandomOperation() {
   const rand = operand[Math.floor(Math.random() * operand.length)];
   return rand;
 }
+function Calculate(operator, num1, num2) {
+  switch (operator) {
+    case '+': return num1 + num2; break;
+    case '-': return num1 - num2; break;
+    case '*': return num1 * num2; break;
+  }
+}
 
 export const brainGames = () => {
   getName();
@@ -26,8 +33,7 @@ export const calcGames = () => {
     const saveRandomOne = getRandomInt(10);
     const saveRandomTwo = getRandomInt(10);
     const saveOperand = getRandomOperation();
-    const createResult = (`${saveRandomOne} ${saveOperand} ${saveRandomTwo}`);
-    const saveResult = eval(createResult);
+    const saveResult = Calculate(saveOperand, saveRandomOne, saveRandomTwo);
     console.log(`Question: ${saveRandomOne} ${saveOperand} ${saveRandomTwo}`);
     const answerUser = readlineSync.question('Your answer: ');
     if (Number(answerUser) === saveResult) {
