@@ -7,11 +7,21 @@ function getRandomOperation() {
   return rand;
 }
 function calculate(operator, num1, num2) {
+  let rightAnswer;
   switch (operator) {
-    case '+': return num1 + num2; break;
-    case '-': return num1 - num2; break;
-    case '*': return num1 * num2; break;
+    case '+':
+      rightAnswer = num1 + num2;
+      break;
+    case '-':
+      rightAnswer = num1 - num2;
+      break;
+    case '*':
+      rightAnswer = num1 * num2;
+      break;
+    default:
+      console.log('Error');
   }
+  return rightAnswer;
 }
 
 const terms = 'What is the result of the expression?';
