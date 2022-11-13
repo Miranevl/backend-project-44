@@ -1,40 +1,30 @@
 import getRandomInt from '../randf.js';
 import playGame from '../index.js';
 
-const arithmeticProgression = (num, randF) => {
-  let a = 1;
-  let b = 1;
-  const stack = [];
-  for (let i = 0; i <= num; i += 1) {
-    const c = a + b;
-    a = b;
-    b = c;
-    stack.push(c);
+const getProgression = () => {
+  const progression = [];
+  const progressionStep = getRandomInt(1, 10);
+  const firstNum = getRandomInt(0, 20);
+  let num = firstNum;
+  let i = 1;
+  while (i <= 10) {
+    progression.push(num);
+    num += progressionStep;
+    i += 1;
   }
-  stack.splice(randF, 1, '..');
-  return stack.join(' ');
-};
-
-const arithmeticProgressionReturn = (num, randF) => {
-  let a = 1;
-  let b = 1;
-  const stack = [];
-  for (let i = 0; i <= num; i += 1) {
-    const c = a + b;
-    a = b;
-    b = c;
-    stack.push(c);
-  }
-  return stack[randF];
+  return progression;
 };
 
 const terms = 'What number is missing in the progression?';
 
 const getRound = () => {
-  const saveRandom = getRandomInt(5, 12);
-  const saveDeleteChar = getRandomInt(0, saveRandom);
-  const question = `${arithmeticProgression(saveRandom, saveDeleteChar)}`;
-  const expectedAnswer = String(arithmeticProgressionReturn(saveRandom, saveDeleteChar));
+  const rawProgression = getProgression();
+  const randomPosition = getRandomInt(0, 9);
+  const hiddenNum = rawProgression[randomPosition];
+  rawProgression[randomPosition] = '..';
+  const processedProgression = rawProgression.join(' ');
+  const question = processedProgression;
+  const expectedAnswer = hiddenNum.toString();
   return [question, expectedAnswer];
 };
 
