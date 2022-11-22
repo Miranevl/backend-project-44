@@ -2,7 +2,14 @@ import getRandomInt from '../randf.js';
 import playGame from '../index.js';
 
 const prime = (n) => {
-  for (let i = 2; i <= Math.sqrt(n); i += 1) { if (n % i === 0) return 'no'; }
+  if (n < 2) {
+    return 'no';
+  }
+  for (let i = 2; i <= Math.sqrt(n); i += 1) {
+    if (n % i === 0) {
+      return 'no';
+    }
+  }
   return 'yes';
 };
 
